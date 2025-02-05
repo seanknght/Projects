@@ -1,15 +1,7 @@
-#SEAN KNIGHT
-#FEB 3, 2025
-
-#NUFF IS A NETWORK MAPPING TOOL.
-
 from colorama import Fore, init, Style
-import sys
-from scapy.all import *
 from scapy.all import arping
 import textwrap
-import ipaddress
-
+import sys
 
 #///////////////// ASCII BANNER ///////////////////
 
@@ -33,7 +25,7 @@ asciiart = """
 ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░        
 ░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  v1.0.0      
                                                       
-             NUFF NETWORK SCANNER
+               SIMPLE ARP-SCANNER
 
 """
 
@@ -42,8 +34,12 @@ print(asciiart)
 #///////////////// ASCII BANNER ///////////////////
 
 def show_help():
-    help_text = textwrap.dedent("""
-    NUFF Network scanning Tool - Help
+
+    help_text = textwrap.dedent(
+
+    """
+
+    NUFF - Simple ARP Scanning Tool - Help
     Usage: python nuff.py [options]
 
     Options:
@@ -51,7 +47,9 @@ def show_help():
       -h, --help        Show this help message and exit
       -v, --version     Show the version of the NUFF tool
       -a, --about       Display information about the NUFF tool
-    """)
+    
+      """)
+
     ascii(Fore.RED, help_text)
 
 if '-h' in sys.argv or '--help' in sys.argv:
@@ -59,37 +57,20 @@ if '-h' in sys.argv or '--help' in sys.argv:
     sys.exit(0)
 
 if '-v' in sys.argv or '--version' in sys.argv:
-    ascii(Fore.RED, "NUFF Tool Version 1.0")
+    ascii(Fore.RED, "NUFF - Version 1.0.0")
     sys.exit(0)
 
 if '-a' in sys.argv or '--about' in sys.argv:
-    ascii(Fore.RED, "NUFF is s Network scanning tool to be evolved into a tool as powerful as nmap. Created by SEAN KNIGHT.")
+    ascii(Fore.RED, "NUFF is simple arp-scanner made by Sean Knight.")
     sys.exit(0)
 
-def nuff(target):
+def nuff():
 
-    try:
-        
-        try:
-            
-            network = ipaddress.ip_network(target, strict= False)
+    arping("192.168.0.1/24")
 
-        except:
+if __name__ == '__main__':
 
-            print("Invalid IP address or CIDR range.")
-            return
+    nuff()
 
-        
-        print(f"Scanning {target}")
-        arping(str(network))
 
-    except:
-
-        sys.exit(0)
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="ARP Network Scanner")
-    parser.add_argument("target")
-    args = parser.parse_args()
-    nuff(args.target)
 
