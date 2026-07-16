@@ -61,7 +61,7 @@ if '-v' in sys.argv or '--version' in sys.argv:
     sys.exit(0)
 
 if '-a' in sys.argv or '--about' in sys.argv:
-    ascii(Fore.RED, "NUFF is simple arp-scanner made by Sean Knight.")
+    ascii(Fore.RED, "NUFF is simple arp-scanner.")
     sys.exit(0)
 
 def nuff():
